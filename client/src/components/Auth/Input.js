@@ -1,9 +1,9 @@
 import React from "react";
 import { TextField, Grid, InputAdornment, IconButton } from "@material-ui/core";
-import { Visibility } from "@material-ui/icons/Visibility";
-import { VisibilityOff } from "@material-ui/icons/VisibilityOff";
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-const Input = ({ half, name, handleChange, label, autofocus, handleShowPassword, type }) => {
+const Input = ({ half, name, handleChange, label, autoFocus, handleShowPassword, type = '' }) => {
   return (
     <Grid item xs={12} sm={half ? 6 : 12}>
       <TextField
@@ -13,19 +13,17 @@ const Input = ({ half, name, handleChange, label, autofocus, handleShowPassword,
         required
         fullWidth
         label={label}
-        autofocus={autofocus}
+        autoFocus={autoFocus}
         type={type}
-        InputProps={
-          name === "password" && {
-            endAndornment: (
+        InputProps={name === 'password' ? {
+            endAdornment: (
               <InputAdornment position="end">
-                <IconButton click={handleShowPassword}>
-                  {type === "password" ? <Visibility /> : <VisibilityOff />}
+                <IconButton onClick={handleShowPassword}>
+                  {type === 'password' ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
             ),
-          }
-        }
+          } : null}
       />
     </Grid>
   );
