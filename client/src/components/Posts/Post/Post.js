@@ -61,7 +61,7 @@ const Post = ({ post, setCurrentId }) => {
       </Typography>
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {post.message}
+          {post.description}
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>

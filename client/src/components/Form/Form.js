@@ -11,7 +11,7 @@ const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
     title: '',
     tags: '',
-    message: '',
+    description: '',
     selectedFile: ''
   });
   const post = useSelector((state) => (currentId ? state.posts.find((p) => p._id === currentId) : null));
@@ -39,7 +39,7 @@ const Form = ({ currentId, setCurrentId }) => {
     setPostData({
       title: '',
       tags: '',
-      message: '',
+      description: '',
       selectedFile: ''
     });
   };
@@ -67,12 +67,12 @@ const Form = ({ currentId, setCurrentId }) => {
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
         />
         <TextField
-          name="message"
+          name="description"
           variant="outlined"
-          label="Message"
+          label="Description"
           fullWidth
-          value={postData.message}
-          onChange={(e) => setPostData({ ...postData, message: e.target.value })}
+          value={postData.description}
+          onChange={(e) => setPostData({ ...postData, description: e.target.value })}
         />
         <TextField
           name="tags"

@@ -5,7 +5,7 @@ import decode from 'jwt-decode';
 import { AppBar, Avatar, Button, Typography, Toolbar } from '@material-ui/core';
 import useStyles from './styles';
 import * as actionType from '../../constants/actionTypes';
-import memories from '../../images/memories.png';
+import traveldiary from '../../images/traveldiary.png';
 
 const Navbar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -37,10 +37,10 @@ const Navbar = () => {
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
       <div className={classes.brandContainer}>
+        <img className={classes.image} src={traveldiary} alt="icon" height="60" />
         <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">
-          Memories
+          TravelDiary
         </Typography>
-        <img className={classes.image} src={memories} alt="icon" height="60" />
       </div>
       <Toolbar className={classes.toolBar}>
         {user?.result ? (
