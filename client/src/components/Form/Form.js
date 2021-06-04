@@ -4,17 +4,19 @@ import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost, updatePost } from '../../actions/posts';
+import { useHistory } from 'react-router-dom';
 
 const Form = ({ currentId, setCurrentId }) => {
   const user = JSON.parse(localStorage.getItem('profile'));
   const classes = useStyles();
+  const history = useHistory();
   const [postData, setPostData] = useState({
     title: '',
     tags: '',
     description: '',
     selectedFile: ''
   });
-  const post = useSelector((state) => (currentId ? state.posts.find((p) => p._id === currentId) : null));
+  const post = useSelector((state) => (currentId ? state.posts.posts.find((p) => p._id === currentId) : null));
 
   const dispatch = useDispatch();
 
@@ -30,7 +32,7 @@ const Form = ({ currentId, setCurrentId }) => {
     if (currentId) {
       dispatch(updatePost(currentId, { ...postData, name: user?.result?.name}));
     } else {
-      dispatch(createPost({ ...postData, name: user?.result?.name}));
+      dispatch(createPost({ ...postData, name: user?.result?.name}, history));
     }
     clear();
   };
@@ -55,7 +57,7 @@ const Form = ({ currentId, setCurrentId }) => {
   }
 
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} elevation={6}>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
         <Typography variant="h6">{currentId ? 'Editing' : 'Creating'} a Memory</Typography>
         <TextField
